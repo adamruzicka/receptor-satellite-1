@@ -102,7 +102,7 @@ class Run:
                 return
             else:
                 for host_output in response["body"]["outputs"]:
-                    host = self.running[host_output["id"]]
+                    host = self.running[host_output["host_id"]]
                     host.process_outputs(host_output)
                     if self.since is not None and host.since > self.since:
                         self.since = host.since
@@ -115,8 +115,9 @@ class Run:
         retry = 0
         while retry < 5:
             await asyncio.sleep(self.config.text_update_interval)
+            names = [host.name for host in self.running.values()]
             response = await self.satellite_api.outputs(
-                self.job_invocation_id, list(self.running.keys()), self.since
+                self.job_invocation_id, names, self.since
             )
             if response["error"] is None or response.get("status") == 404:
                 return response

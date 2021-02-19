@@ -109,12 +109,12 @@ class SatelliteAPI:
         response = await self.request("GET", url, extra_data)
         return sanitize_response(response, [200])
 
-    async def outputs(self, job_invocation_id, host_ids, since):
+    async def outputs(self, job_invocation_id, host_names, since):
         url = "{}/api/v2/job_invocations/{}/outputs".format(self.url, job_invocation_id)
-        search_query = ",".join(map(str, host_ids))
+        names = ",".join(host_names)
         extra_data = {
             "auth": aiohttp.BasicAuth(self.username, self.password),
-            "params": {"search_query": search_query},
+            "params": {"search_query": f"name ^ ({names})"},
         }
         if since is not None:
             extra_data["params"]["since"] = str(since)

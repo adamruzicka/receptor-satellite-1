@@ -76,7 +76,7 @@ RUN_TEST_CASES = [
                 body={
                     "outputs": [
                         {
-                            "id": 5,
+                            "host_id": 5,
                             "output": [{"output": "Exit status: 0"}],
                             "complete": True,
                         }
@@ -87,7 +87,7 @@ RUN_TEST_CASES = [
         ],
         [
             ("trigger", ({"playbook": "playbook"}, ["host1"])),
-            ("outputs", (123, [5], None)),
+            ("outputs", (123, ["host1"], None)),
         ],
         [
             messages.ack("play_id"),
@@ -116,7 +116,7 @@ RUN_TEST_CASES = [
                 body={
                     "outputs": [
                         {
-                            "id": 5,
+                            "host_id": 5,
                             "output": [
                                 {
                                     "output": "The only applicable capsule something.somewhere.com is down"
@@ -131,7 +131,7 @@ RUN_TEST_CASES = [
         ],
         [
             ("trigger", ({"playbook": "playbook"}, ["host1"])),
-            ("outputs", (123, [5], None)),
+            ("outputs", (123, ["host1"], None)),
         ],
         [
             messages.ack("play_id"),
@@ -168,7 +168,7 @@ RUN_TEST_CASES = [
                 body={
                     "outputs": [
                         {
-                            "id": 5,
+                            "host_id": 5,
                             "complete": True,
                             "output": [
                                 {
@@ -220,7 +220,7 @@ RUN_TEST_CASES = [
         ],
         [
             ("trigger", ({"playbook": "playbook"}, ["host1"])),
-            ("outputs", (123, [5], None)),
+            ("outputs", (123, ["host1"], None)),
         ],
         [
             messages.ack("play_id"),
@@ -286,11 +286,11 @@ RUN_TEST_CASES = [
         ],
         [
             ("trigger", ({"playbook": "playbook"}, ["host1"])),
-            ("outputs", (123, [5], None)),
-            ("outputs", (123, [5], None)),
-            ("outputs", (123, [5], None)),
-            ("outputs", (123, [5], None)),
-            ("outputs", (123, [5], None)),
+            ("outputs", (123, ["host1"], None)),
+            ("outputs", (123, ["host1"], None)),
+            ("outputs", (123, ["host1"], None)),
+            ("outputs", (123, ["host1"], None)),
+            ("outputs", (123, ["host1"], None)),
         ],
         [
             messages.ack("play_id"),
@@ -333,7 +333,7 @@ RUN_TEST_CASES = [
         ],
         [
             ("trigger", ({"playbook": "playbook"}, ["host1"])),
-            ("outputs", (123, [5], None)),
+            ("outputs", (123, ["host1"], None)),
             ("output", (123, 5, None)),
         ],
         [
